@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+
+import os
+import sys
+from carvekit.ml.files.models_loc import tracer_b7_pretrained
+from carvekit.web.schemas.config import MLConfig
+from carvekit.web.utils.init_utils import init_interface
+
+# append project directory to path so predict.py can be imported
+sys.path.append('.')
+from predict import MODEL_CACHE
+
+tracer_b7_pretrained()
+model = init_interface(
+    MLConfig(
+        segmentation_network="tracer_b7",
+        preprocessing_method="none",
+        postprocessing_method="fba",
+        seg_mask_size=640,
+        trimap_dilation=30,
+        trimap_erosion=5,
+        device='cpu'
+    )
+)
+
+if not os.path.exists(MODEL_CACHE):
+    os.makedirs(MODEL_CACHE)
+
+os.system("cp /root/.cache/carvekit/checkpoints/tracer_b7/tracer_b7.pth model-cache/")
+os.system("cp /root/.cache/carvekit/checkpoints/fba/fba_matting.pth model-cache/")
