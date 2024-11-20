@@ -1,5 +1,7 @@
 # Carve/tracer_b7Cog model
 
+[![Try a demo on Replicate](https://replicate.com/lucataco/remove-bg/badge)](https://replicate.com/lucataco/remove-bg)
+
 This is an implementation of the [Carve/tracer_b7](https://huggingface.co/Carve/tracer_b7) as a Cog model. [Cog packages machine learning models as standard containers.](https://github.com/replicate/cog)
 
 First, download the pre-trained weights:
